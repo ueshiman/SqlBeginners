@@ -5,9 +5,15 @@ VisualStudioVersion = 16.0.30914.41
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityFramework", "sqlBasicPre\EntityFramework.csproj", "{E48B3410-EE8B-4575-A1A8-CEF1A48BDD6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperFirst", "Dapper\DapperFirst.csproj", "{202D131A-49A7-4219-8724-6049D9B2A6BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DapperFirst", "Dapper\DapperFirst.csproj", "{202D131A-49A7-4219-8724-6049D9B2A6BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "commandFirst", "commandFirst\commandFirst.csproj", "{98E36CDF-72AD-4034-8DC1-3E0B3A709F7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "commandFirst", "commandFirst\commandFirst.csproj", "{98E36CDF-72AD-4034-8DC1-3E0B3A709F7D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3127CC67-48D7-411D-B60E-52CDD641BA9D}"
+	ProjectSection(SolutionItems) = preProject
+		db\biginPre.mdf = db\biginPre.mdf
+		db\biginPre_log.ldf = db\biginPre_log.ldf
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
