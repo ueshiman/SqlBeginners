@@ -1,0 +1,2 @@
+﻿dotnet ef dbcontext scaffold "Server=LAPTOP-VSS7FKD8;Database=biginPre;Trusted_Connection=True" Microsoft.EntityFrameworkCore.SqlServer -o Models
+dotnet ef dbcontext scaffold "Server=LAPTOP-VSS7FKD8;Database=biginPre;Trusted_Connection=True" Microsoft.EntityFrameworkCore.SqlServer  -o DataAccess\DataAccessModels -d -c MyDbContext --context-dir DataAccess\DbContexts --force
