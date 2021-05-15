@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.SqlClient;
 using Dapper;
-using Microsoft.Data.SqlClient;
+using System.Data.SqlClient;
 
 namespace DapperFirst
 {
@@ -23,7 +27,27 @@ namespace DapperFirst
 
             var firstClasses = connection.Query<FirstClass>("SELECT * FROM firstStep");
 
+            foreach (var firstClass in firstClasses)
+            {
+                Console.WriteLine($"{firstClass.id}, {firstClass.key}, {firstClass.value}");
+            }
 
+
+
+            var firstClasses2 = connection.Query<FirstClass>(@"
+SELECT id, 
+CASE 
+WHEN [key] = 'apple' then '林檎'
+WHEN [key] = 'banana' then 'バナナ'
+WHEN [key] = 'tomato' then 'トマト'
+ELSE [key] END as [key]
+, value
+FROM firstStep");
+
+            foreach (var firstClass in firstClasses2)
+            {
+                Console.WriteLine($"{firstClass.id}, {firstClass.key}, {firstClass.value}");
+            }
         }
     }
 
@@ -35,4 +59,6 @@ namespace DapperFirst
 
         public string value { get; set; }
     }
+
+ 
 }

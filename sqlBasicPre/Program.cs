@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Runtime.Intrinsics;
+using Microsoft.EntityFrameworkCore;
 using sqlBasicPre.DataAccess.DataAccessModels;
 using sqlBasicPre.DataAccess.DbContexts;
 
@@ -12,12 +13,16 @@ namespace sqlBasicPre
         {
             Console.WriteLine("Hello World!");
 
-            Selected();
+            //Selected();
+
+            FromSql();
+
 
         }
 
         private static void Selected()
         {
+            string[] inn = { "apple", "A", "B" };
 
             MyDbContext myDbContext = new MyDbContext();
 
@@ -25,7 +30,6 @@ namespace sqlBasicPre
 
             Console.WriteLine($"{where.Id},{where.Key},{where.Value}");
 
-            string[] inn = { "apple", "A", "B" };
 
             var all = myDbContext.FirstSteps;
 
@@ -64,10 +68,11 @@ namespace sqlBasicPre
             {
                 Console.WriteLine($"{firstStep.Id},{firstStep.Key},{firstStep.Value}");
             }
+            Console.WriteLine("-------------------------------");
 
             var v3 = v2.Where(f => f.Key == "A");
 
-            foreach (FirstStep firstStep in contain)
+            foreach (FirstStep firstStep in v3)
             {
                 Console.WriteLine($"{firstStep.Id},{firstStep.Key},{firstStep.Value}");
             }
@@ -76,7 +81,24 @@ namespace sqlBasicPre
 
         private static void FromSql()
         {
+            MyDbContext myDbContext = new MyDbContext();
 
+            string kye = "A";
+
+            var fromSql = myDbContext.FirstSteps.FromSqlInterpolated($"Select * from firstStep where [key] = {kye}");
+
+            foreach (FirstStep firstStep in fromSql)
+            {
+                Console.WriteLine($"{firstStep.Id},{firstStep.Key},{firstStep.Value}");
+            }
+
+            System.FormattableString sql = $"Select * from firstStep where [key] = {kye}";
+            var fromSql2 = myDbContext.FirstSteps.FromSqlInterpolated(sql);
+
+            foreach (FirstStep firstStep in fromSql2)
+            {
+                Console.WriteLine($"{firstStep.Id},{firstStep.Key},{firstStep.Value}");
+            }
         }
     }
 }
